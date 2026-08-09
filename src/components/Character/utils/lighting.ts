@@ -1,3 +1,4 @@
+import { gsap } from "gsap";
 import * as THREE from "three";
 import { RGBELoader } from "three-stdlib";
 gsap
