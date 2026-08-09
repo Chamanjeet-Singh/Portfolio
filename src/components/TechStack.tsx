@@ -124,17 +124,28 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   );
 }
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Refresh ScrollTrigger to recalculate trigger positions after lazy load
+    const refreshTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
     const handleScroll = () => {
+      const workElem = document.getElementById("work");
+      if (!workElem) return;
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
+      const threshold = workElem.getBoundingClientRect().top;
       setIsActive(scrollY > threshold);
     };
+    
     document.querySelectorAll(".header a").forEach((elem) => {
       const element = elem as HTMLAnchorElement;
       element.addEventListener("click", () => {
@@ -148,6 +159,7 @@ const TechStack = () => {
     });
     window.addEventListener("scroll", handleScroll);
     return () => {
+      clearTimeout(refreshTimeout);
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);

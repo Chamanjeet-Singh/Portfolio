@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createContext,
   PropsWithChildren,
@@ -13,7 +14,7 @@ interface LoadingType {
   setLoading: (percent: number) => void;
 }
 
-export const LoadingContext = createContext<LoadingType | null>(null);
+const LoadingContext = createContext<LoadingType | null>(null);
 
 export const LoadingProvider = ({ children }: PropsWithChildren) => {
   const [isLoading, setIsLoading] = useState(true);

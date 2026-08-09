@@ -8,18 +8,26 @@ const WhatIDo = () => {
     containerRef.current[index] = el;
   };
   useEffect(() => {
+    const currentContainers = [...containerRef.current];
+    const handlers = new Map<HTMLDivElement, () => void>();
+
     if (ScrollTrigger.isTouch) {
-      containerRef.current.forEach((container) => {
+      currentContainers.forEach((container) => {
         if (container) {
           container.classList.remove("what-noTouch");
-          container.addEventListener("click", () => handleClick(container));
+          const handler = () => handleClick(container);
+          handlers.set(container, handler);
+          container.addEventListener("click", handler);
         }
       });
     }
     return () => {
-      containerRef.current.forEach((container) => {
+      currentContainers.forEach((container) => {
         if (container) {
-          container.removeEventListener("click", () => handleClick(container));
+          const handler = handlers.get(container);
+          if (handler) {
+            container.removeEventListener("click", handler);
+          }
         }
       });
     };
@@ -90,21 +98,22 @@ const WhatIDo = () => {
               <h3>DEVELOP</h3>
               <h4>Description</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae.
+                Building robust, scalable, and responsive web applications from database schema design through backend API creation to interactive frontend interfaces. Experienced in Agile workflows and cloud deployments.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">JavaScript</div>
-                <div className="what-tags">TypeScript</div>
-                <div className="what-tags">Three.js</div>
-                <div className="what-tags">React</div>
-                <div className="what-tags">Css</div>
-                <div className="what-tags">Node.js</div>
+                <div className="what-tags">React.js</div>
                 <div className="what-tags">Next.js</div>
+                <div className="what-tags">TypeScript</div>
+                <div className="what-tags">JavaScript</div>
+                <div className="what-tags">Node.js</div>
                 <div className="what-tags">Express.js</div>
-                <div className="what-tags">PHP</div>
-                <div className="what-tags">MySql</div>
+                <div className="what-tags">Spring Boot</div>
+                <div className="what-tags">PostgreSQL</div>
+                <div className="what-tags">MongoDB</div>
+                <div className="what-tags">AWS</div>
+                <div className="what-tags">Tailwind CSS</div>
+                <div className="what-tags">Git</div>
               </div>
               <div className="what-arrow"></div>
             </div>
@@ -128,22 +137,22 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>DESIGN</h3>
+              <h3>DATA</h3>
               <h4>Description</h4>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-                quia aliquid laboriosam ducimus sit molestiae
+                Designing and building data pipelines, ETL workflows, and analytics dashboards that turn raw data into actionable insights. Experienced with data modeling, query optimization, and visualization tools to drive product decisions.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Blender</div>
-                <div className="what-tags">Zbrush</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Motion</div>
-                <div className="what-tags">Rigging</div>
-                <div className="what-tags">3D Animation</div>
-                <div className="what-tags">Character Design</div>
-                <div className="what-tags">Modelling</div>
+                <div className="what-tags">Python</div>
+                <div className="what-tags">SQL</div>
+                <div className="what-tags">PostgreSQL</div>
+                <div className="what-tags">MySQL</div>
+                <div className="what-tags">MongoDB</div>
+                <div className="what-tags">AWS RDS</div>
+                <div className="what-tags">ETL Pipelines</div>
+                <div className="what-tags">Data Visualization</div>
+                <div className="what-tags">Product Analytics</div>
               </div>
               <div className="what-arrow"></div>
             </div>

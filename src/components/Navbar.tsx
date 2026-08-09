@@ -6,7 +6,7 @@ import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
 import "./styles/Navbar.css";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+let smoother: ScrollSmoother;
 
 const Navbar = () => {
   useEffect(() => {
@@ -23,14 +23,14 @@ const Navbar = () => {
     smoother.scrollTop(0);
     smoother.paused(true);
 
-    let links = document.querySelectorAll(".header ul a");
+    const links = document.querySelectorAll(".header ul a");
     links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
+      const element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
+          const elem = e.currentTarget as HTMLAnchorElement;
+          const section = elem.getAttribute("data-href");
           smoother.scrollTo(section, true, "top top");
         }
       });
@@ -46,11 +46,11 @@ const Navbar = () => {
           Logo
         </a>
         <a
-          href="mailto:example@mail.com"
+          href="mailto:chamanjeet111@gmail.com"
           className="navbar-connect"
           data-cursor="disable"
         >
-          example@mail.com
+          chamanjeet111@gmail.com
         </a>
         <ul>
           <li>
