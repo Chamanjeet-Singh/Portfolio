@@ -124,8 +124,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
   );
 }
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsapimport { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const TechStack = () => {
   const [isActive, setIsActive] = useState(false);
